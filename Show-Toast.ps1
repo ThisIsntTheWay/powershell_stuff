@@ -29,7 +29,12 @@ $icons = @{
         Title of the notification.
         Defaults to "Alert".
     .PARAMETER level
-        Depending on the value, the notification bubble will have a different appearance.
+        Icon of the the notification bubble.
+        Can be: "Info", "Warn", "Error"
+        Defaults to "Info".
+    .PARAMETER bubbleTag
+        "Tag" of the notification bubble, will set the bold text at the top of the bubble.
+        (I.e. where "File Explorer" would be when explorer.exe spawns a notification)
         Defaults to "Info".
     .PARAMETER expiry
         Expiration time of the notification bubble in seconds.
