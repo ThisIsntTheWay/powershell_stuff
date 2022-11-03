@@ -1,0 +1,2 @@
+New-NetFirewallRule -DisplayName "Teams.exe" -Program "%LocalAppData%\Microsoft\Teams\current\Teams.exe" -Profile Domain -Direction Inbound -Action Allow -Protocol Any -EdgeTraversalPolicy Block
+New-NetFirewallRule -DisplayName "Teams.exe" -Program "%LocalAppData%\Microsoft\Teams\current\Teams.exe" -Profile Public,Private -Direction Inbound -Action Block -Protocol Any -EdgeTraversalPolicy Block
