@@ -29,12 +29,11 @@ $tempFolder = "$env:TEMP\wingetInstallScript"
 
 # Check if is not installed already
 Write-Host "Checking for Winget-AutoUpdate..." -f cyan
-try {
-	Get-ScheduledTask Winget-AutoUpdate -ErrorAction SilentlyContinue | Out-Null
-	
+$sched = Get-ScheduledTask Winget-AutoUpdate -ErrorAction SilentlyContinue | Out-Null
+if ($sched.count -ge 1) {
 	Write-Host "> Already installed" -f green
-	exit
-} catch {
+	return
+} else {
 	Write-Host "> Missing" -f yellow
 }
 
@@ -75,3 +74,4 @@ try {
 } catch {
 	throw "Installation failed: $_"
 }
+
