@@ -10,7 +10,7 @@
 #>
 
 <# -------------------------
-			VARIABLES
+           VARIABLES
    ------------------------- #>
 # For installation parameters, see:
 # https://github.com/Romanitho/Winget-AutoUpdate/blob/main/Winget-AutoUpdate-Install.ps1
@@ -23,16 +23,19 @@ $InstallParameters = @{
 }
 
 <# -------------------------
-				MAIN
+             MAIN
    ------------------------- #>
 $tempFolder = "$env:TEMP\wingetInstallScript"
 
 # Check if is not installed already
 Write-Host "Checking for Winget-AutoUpdate..." -f cyan
-$sched = Get-ScheduledTask Winget-AutoUpdate -ErrorAction SilentlyContinue | Out-Null
-If ($sched) {
-	Write-Host "Winget-AutoUpdate is already installed." -f green
+try {
+	Get-ScheduledTask Winget-AutoUpdate -ErrorAction SilentlyContinue | Out-Null
+	
+	Write-Host "> Already installed" -f green
 	exit
+} catch {
+	Write-Host "> Missing" -f yellow
 }
 
 # Get latest release of Winget-AutoUpdate
